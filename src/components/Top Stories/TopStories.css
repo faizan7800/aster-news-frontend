@@ -1,0 +1,34 @@
+.ant-tag-checkable{
+    background: white !important;
+}
+.ant-tag-checkable-checked{
+    background: #2F9FF8 !important;
+}
+.rightside_card .ant-card-body{
+    padding: 15px !important;
+}
+.sub_card .ant-card-body{
+    padding: 15px !important;
+    padding-bottom: 0rem !important;
+}
+.subscibe_card .ant-card-body{
+    padding: 15px !important;
+}
+.story_card .ant-card-body{
+    padding: 20px !important;
+}
+.follow_card .ant-card-body{
+    padding: 15px !important;
+}
+.circle{
+    width: 32px;
+    height: 32px;
+    display: inline-block;
+    border-radius: 50%;
+    background-color: #2F9FF8;
+} 
+.circle img{
+    width: 18px;
+    padding-left: 11px;
+    padding-top: 7px;
+}

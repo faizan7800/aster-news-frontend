@@ -1,0 +1,14 @@
+.login_img{
+    width: 100%;
+    padding: 8rem;
+}
+.login_form{
+    padding: 6rem;
+    margin-top: 21%;
+}
+.input_password_icon input{
+    background: rgb(242, 242, 242);
+}
+.input_email_icon input{
+    background: rgb(242, 242, 242);
+}
