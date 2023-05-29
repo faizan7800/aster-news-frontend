@@ -9,11 +9,15 @@ import ArrowLeftLineDisabledSvg from "./../../images/arrowleftwithlinedisabled.s
 import ArrowRightLineDisabledSvg from "./../../images/arrowrightwithlinedisabled.svg";
 import StoriesCard from "./StoriesCard";
 import FollowCard from "./FollowCard";
+import { SearchOutlined } from "@ant-design/icons";
+import { Input } from "antd";
 const { CheckableTag } = Tag;
 
-const TopStories = ({ toggleMode, articles, size }) => {
+const TopStories = ({ articles, msg, toggleMode }) => {
   const carouselRef = useRef(null);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [news, setNews] = useState([]);
+  const [search, setSearch] = useState("");
 
   const onFollowCardChange = (currentSlidee) => {
     setCurrentSlide(currentSlidee);
@@ -35,22 +39,48 @@ const TopStories = ({ toggleMode, articles, size }) => {
       : selectedTags.filter((t) => t !== tag);
     setSelectedTags(nextSelectedTags);
   };
+  const filteredArticles = articles?.filter((el) =>
+    el.title?.toLowerCase().includes(search)
+  );
+  const handleSearch = () => {
+    console.log(filteredArticles);
+  };
   return (
     <>
-      <div
-        className="bold fs-20"
-        style={{
-          transition: `all 0.5s`,
-          color: `${toggleMode ? "#CBE4DE" : ""}`,
-        }}
-      >
-        Top Stories for you
-      </div>
+      <div className="bold fs-20">{msg || "Top Stories for you"}</div>
       <Row>
         <Col xs={18}>
-          {articles && (
+          <div
+            className="search_bar"
+            style={{ marginTop: "1.5rem", width: "82%" }}
+          >
+            <Input
+              className="border-0"
+              style={{
+                background: "rgba(47, 159, 248, 0.04)",
+                borderRadius: "4px",
+                width: "118%",
+                height: "46px",
+                marginLeft: "20px",
+              }}
+              placeholder="Search news..."
+              size="large"
+              onChange={(e) => {
+                setSearch(e.target.value);
+                console.log(search);
+              }}
+              suffix={
+                <span>
+                  <SearchOutlined onClick={handleSearch} />
+                </span>
+              }
+            />
+          </div>
+
+          <div style={{ marginTop: "2rem" }}></div>
+          {filteredArticles?.length ? (
             <Row style={{ marginTop: "1rem", width: "132%" }}>
-              {articles.map((el, i) => {
+              {filteredArticles.map((el, i) => {
                 return (
                   <div key={i} style={{ marginTop: "1rem", display: "flex" }}>
                     <StoriesCard article={el} toggleMode={toggleMode} />
@@ -58,11 +88,9 @@ const TopStories = ({ toggleMode, articles, size }) => {
                 );
               })}
             </Row>
+          ) : (
+            "No results found"
           )}
-          <div
-            className="bold fs-20 space-between"
-            style={{ marginBlock: "2rem" }}
-          ></div>
         </Col>
       </Row>
     </>

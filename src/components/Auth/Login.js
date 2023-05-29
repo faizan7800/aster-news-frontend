@@ -54,7 +54,7 @@ export default function Login() {
     if (res.data && res.data.status === "success") {
       saveNews();
       Cookie.set("jwt", res.data.token);
-      navigate("/dashboard/topstories");
+      navigate("/dashboard/topstories/general");
     } else {
       alert("user credentails are invlaid");
     }

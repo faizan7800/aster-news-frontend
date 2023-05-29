@@ -39,11 +39,13 @@ const Sidebar = ({ toggleMode }) => {
             <ul>
               <li
                 className={`item ${
-                  location.pathname.endsWith("topstories") ? "side_active" : ""
+                  location.pathname.endsWith("topstories/general")
+                    ? "side_active"
+                    : ""
                 }`}
               >
                 <Link
-                  to="/dashboard/topstories"
+                  to="/dashboard/topstories/general"
                   style={{ textDecoration: "none" }}
                   className={`text-black ${
                     location.pathname.endsWith("topstories")

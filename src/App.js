@@ -65,8 +65,12 @@ function App() {
             <Route exact path="bookmarkedNews/:id" element={<Story />} />
             <Route
               exact
-              path="topstories"
-              element={<TopStories toggleMode={toggleMode} />}
+              path="topstories/general"
+              element={
+                <>
+                  <General toggleMode={toggleMode} />
+                </>
+              }
             />
             <Route
               exact

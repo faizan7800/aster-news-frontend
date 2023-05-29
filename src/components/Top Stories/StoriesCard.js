@@ -29,42 +29,43 @@ const StoriesCard = ({ size, articleLarge, article, toggleMode }) => {
   return (
     <>
       {size === "large" ? (
-        <div>
-          <h1>Your Saved News is:</h1>
-          <div className="story_card" onClick={handleClick}>
-            <Card
-              style={{
-                width: 914,
-              }}
-            >
-              <div className="space-between">
-                <div>
-                  <div style={{ fontWeight: 500 }} className="fs-17">
-                    {article?.title?.substr(0, 50) + "..."}
-                  </div>
-                  <div className="text-muted" style={{ width: "90%" }}>
-                    {" "}
-                    {article?.description
-                      ? article.description.substr(0, 80) + "..."
-                      : ""}
-                  </div>
-                  <Row
-                    style={{
-                      paddingTop: ` 4rem`,
-                    }}
-                  ></Row>
-                </div>
-                <div>
-                  <img
-                    src={article?.urlToImage}
-                    alt="..."
-                    style={{ width: "170px" }}
-                  />
-                </div>
-              </div>
-            </Card>
-          </div>
-        </div>
+        // <div>
+        //   <h1>Your Saved News is:</h1>
+        //   <div className="story_card" onClick={handleClick}>
+        //     <Card
+        //       style={{
+        //         width: 914,
+        //       }}
+        //     >
+        //       <div className="space-between">
+        //         <div>
+        //           <div style={{ fontWeight: 500 }} className="fs-17">
+        //             {article?.title?.substr(0, 50) + "..."}
+        //           </div>
+        //           <div className="text-muted" style={{ width: "90%" }}>
+        //             {" "}
+        //             {article?.description
+        //               ? article.description.substr(0, 80) + "..."
+        //               : ""}
+        //           </div>
+        //           <Row
+        //             style={{
+        //               paddingTop: ` 4rem`,
+        //             }}
+        //           ></Row>
+        //         </div>
+        //         <div>
+        //           <img
+        //             src={article?.urlToImage}
+        //             alt="..."
+        //             style={{ width: "170px" }}
+        //           />
+        //         </div>
+        //       </div>
+        //     </Card>
+        //   </div>
+        // </div>
+        ""
       ) : (
         <div
           className="story_card crd"

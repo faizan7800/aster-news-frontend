@@ -69,31 +69,7 @@ const Navbar = ({ toggleMode }) => {
               </span>
             </div>
           </Col>
-          <Col xs={8}>
-            <div className="search_bar">
-              <Input
-                className="border-0"
-                style={{
-                  background: "rgba(47, 159, 248, 0.04)",
-                  borderRadius: "4px",
-                  width: "118%",
-                  height: "46px",
-                  marginLeft: "20px",
-                }}
-                size="large"
-                suffix={
-                  <span>
-                    <SearchOutlined
-                      style={{
-                        color: `${toggleMode ? "#CBE4DE" : ""}`,
-                        transition: `all 0.5s`,
-                      }}
-                    />
-                  </span>
-                }
-              />
-            </div>
-          </Col>
+          <Col xs={8}></Col>
           <Col xs={4}></Col>
           <Col xs={3}></Col>
           <Col xs={5}>
