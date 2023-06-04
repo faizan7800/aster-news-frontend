@@ -14,6 +14,11 @@ export default function Country({ toggleMode }) {
   else if (country === "gb") countryName = "United Kingdom";
   else if (country === "us") countryName = "America";
   else if (country === "au") countryName = "Ausralia";
+  else if (country === "ae") countryName = "United Arab Emirates";
+  else if (country === "ar") countryName = "Argentina";
+  else if (country === "at") countryName = "Austria";
+  else if (country === "bg") countryName = "Bulgaria";
+  else if (country === "be") countryName = "Belgium";
   const { data, isLoading } = useGetNewsByCountryQuery(country);
   useEffect(() => {
     data && setNews(data.news);
@@ -27,11 +32,13 @@ export default function Country({ toggleMode }) {
   if (!data?.news?.length) return <>No news for today!</>;
   return (
     <>
+    
       {news && (
         <TopStories
           articles={news}
           msg={countryName + " News"}
           toggleMode={toggleMode}
+          dropdown="yes"
         />
       )}
     </>

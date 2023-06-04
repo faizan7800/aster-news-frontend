@@ -72,18 +72,25 @@ const Sidebar = ({ toggleMode }) => {
                   </span>
                 </Link>
               </li>
-
-              <li
-                className={`item ${
-                  location.pathname.endsWith("country") ? "side_active" : ""
-                }`}
-              >
-                <Collapse ghost expandIconPosition="end">
-                  <Panel
-                    header={
-                      <>
+                      
+                      <li
+                      className={`item ${
+                        location.pathname.endsWith("country/us")
+                          ? "side_active"
+                          : ""
+                      }`}
+                    >
+                      <Link
+                        to="/dashboard/country/us"
+                        style={{ textDecoration: "none" }}
+                        className={`text-black ${
+                          location.pathname.endsWith("country/us")
+                            ? "side_activee"
+                            : ""
+                        }`}
+                      >
                         <img
-                          src={BriefcaseSvg}
+                          src={MessageSvg}
                           alt=""
                           style={{
                             width: "18px",
@@ -97,153 +104,12 @@ const Sidebar = ({ toggleMode }) => {
                             color: `${toggleMode ? "#CBE4DE" : ""}`,
                           }}
                         >
-                          Around the World
+                          Around The World
                         </span>
-                      </>
-                    }
-                    key="1"
-                  >
-                    <ul className="fs-15" style={{ lineHeight: "1.3rem" }}>
-                      <li
-                        className={`nested_item ${
-                          location.pathname.includes("country/us")
-                            ? "side_active"
-                            : ""
-                        }`}
-                      >
-                        <Link
-                          to="/dashboard/country/us"
-                          style={{ textDecoration: "none" }}
-                          className={`text-black ${
-                            location.pathname.includes("country/us")
-                              ? "side_activee"
-                              : ""
-                          }`}
-                        >
-                          <img
-                            src={WorldSvg}
-                            alt=""
-                            style={{
-                              width: "18px",
-                              filter: `${toggleMode ? "grayscale(100%)" : ""}`,
-                            }}
-                          />
-                          <span
-                            style={{
-                              paddingLeft: "10px",
-                              color: `${toggleMode ? "#CBE4DE" : ""}`,
-                            }}
-                          >
-                            USA
-                          </span>
-                        </Link>
-                      </li>
-                      <li
-                        className={`nested_item ${
-                          location.pathname.includes("country/gb")
-                            ? "side_active"
-                            : ""
-                        }`}
-                      >
-                        <Link
-                          to="/dashboard/country/gb"
-                          style={{ textDecoration: "none" }}
-                          className={`text-black ${
-                            location.pathname.includes("country/gb")
-                              ? "side_activee"
-                              : ""
-                          }`}
-                        >
-                          <img
-                            src={WorldSvg}
-                            alt=""
-                            style={{
-                              width: "18px",
-                              filter: `${toggleMode ? "grayscale(100%)" : ""}`,
-                            }}
-                          />
-                          <span
-                            style={{
-                              paddingLeft: "10px",
-                              color: `${toggleMode ? "#CBE4DE" : ""}`,
-                            }}
-                          >
-                            UK
-                          </span>
-                        </Link>
-                      </li>
-                      <li
-                        className={`nested_item ${
-                          location.pathname.includes("country/ca")
-                            ? "side_active"
-                            : ""
-                        }`}
-                      >
-                        <Link
-                          to="/dashboard/country/ca"
-                          style={{ textDecoration: "none" }}
-                          className={`text-black ${
-                            location.pathname.includes("country/ca")
-                              ? "side_activee"
-                              : ""
-                          }`}
-                        >
-                          <img
-                            src={WorldSvg}
-                            alt=""
-                            style={{
-                              width: "18px",
-                              filter: `${toggleMode ? "grayscale(100%)" : ""}`,
-                            }}
-                          />
-                          <span
-                            style={{
-                              paddingLeft: "10px",
-                              color: `${toggleMode ? "#CBE4DE" : ""}`,
-                            }}
-                          >
-                            Canada
-                          </span>
-                        </Link>
-                      </li>
-                      <li
-                        className={`nested_item ${
-                          location.pathname.includes("country/au")
-                            ? "side_active"
-                            : ""
-                        }`}
-                      >
-                        <Link
-                          to="/dashboard/country/au"
-                          style={{ textDecoration: "none" }}
-                          className={`text-black ${
-                            location.pathname.includes("country/au")
-                              ? "side_activee"
-                              : ""
-                          }`}
-                        >
-                          <img
-                            src={WorldSvg}
-                            alt=""
-                            style={{
-                              width: "18px",
-                              filter: `${toggleMode ? "grayscale(100%)" : ""}`,
-                            }}
-                          />
-                          <span
-                            style={{
-                              paddingLeft: "10px",
-                              color: `${toggleMode ? "#CBE4DE" : ""}`,
-                            }}
-                          >
-                            Australia
-                          </span>
-                        </Link>
-                      </li>
-                    </ul>
-                  </Panel>
-                </Collapse>
-              </li>
+                      </Link>
+                    </li>
+             
+             
               <li
                 className={`item ${
                   location.pathname.endsWith("localnews") ? "side_active" : ""

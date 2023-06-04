@@ -80,10 +80,20 @@ function App() {
             <Route exact path="country/gb" element={<Country />} />
             <Route exact path="country/au" element={<Country />} />
             <Route exact path="country/ca" element={<Country />} />
+            <Route exact path="country/ae" element={<Country />} />
+            <Route exact path="country/ar" element={<Country />} />
+            <Route exact path="country/at" element={<Country />} />
+            <Route exact path="country/be" element={<Country />} />
+            <Route exact path="country/bg" element={<Country />} />
             <Route exact path="country/us/:id" element={<Story />} />
             <Route exact path="country/gb/:id" element={<Story />} />
             <Route exact path="country/au/:id" element={<Story />} />
             <Route exact path="country/ca/:id" element={<Story />} />
+            <Route exact path="country/ae/:id" element={<Story />} />
+            <Route exact path="country/ar/:id" element={<Story />} />
+            <Route exact path="country/at/:id" element={<Story />} />
+            <Route exact path="country/be/:id" element={<Story />} />
+            <Route exact path="country/bg/:id" element={<Story />} />
             <Route exact path="topstories/story" element={<Story />} />
             <Route
               exact

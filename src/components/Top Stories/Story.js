@@ -5,6 +5,7 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import TwitterIcon from "@mui/icons-material/Twitter";
+import axios from "axios";
 import {
   FacebookShareButton,
   InstapaperShareButton,
@@ -51,6 +52,7 @@ import { Spin } from "antd";
 import Cookies from "js-cookie";
 import jwtDecode from "jwt-decode";
 import { Input } from "antd";
+import StoriesCard from "./StoriesCard";
 const { TextArea } = Input;
 const { BackTop } = FloatButton;
 
@@ -65,12 +67,14 @@ const Story = () => {
   const { id } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
+  const [loadingSign, setLoadingSign] = useState(false);
   const cat = location.pathname.split("/")[3];
   const [addComment] = useAddCommentMutation();
   const [saveSamaNewsDesc] = useSaveSammaNewsDescMutation();
   const [saveGeoNewsDesc] = useSaveGeoNewsDescMutation();
   const [likeNews] = useLikeNewsMutation();
   const [dislike] = useDislikeNewsMutation();
+  const [recommendedArticles, setRecommendedArticles] = useState([]);
   const [removeLikeDislike] = useRemoveLikeDislikeMutation();
   const { data: comments, isLoading: isCommentsLoading } =
     useGetAllCommentsQuery(id);
@@ -112,6 +116,30 @@ const Story = () => {
       setLoad(false);
     };
     saveDesc();
+    const fetchArticles = async () => {
+      try {
+        setLoadingSign(true);
+        const response = await axios.get(
+          `http://localhost:3001/api/v1/allnews`
+        );
+        const articles = response.data;
+        const titleWords = news?.title.split(" ");
+        let recArt;
+        titleWords.forEach((word) => {
+          recArt = articles.data.filter((article) =>
+            article.title.includes(word)
+          );
+        });
+        console.log(recArt);
+        setRecommendedArticles(recArt);
+        setLoadingSign(false);
+        // console.log(titleWords);
+        console.log(articles); // You can process or display the articles here
+      } catch (error) {
+        console.error("Error fetching articles:", error);
+      }
+    };
+    fetchArticles();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [localNews]);
   if (isLoading || isLocalLoading)
@@ -298,6 +326,41 @@ const Story = () => {
             </div>
           </div>
         ))}
+      <div
+        style={{
+          borderTop: "2px solid #E0F0F8",
+          marginTop: "20px",
+          width: "90%",
+        }}
+      >
+        <h3 style={{ fontWeight: "bolder", paddingTop: "15px" }}>
+          Recommended News According to Your Interest
+        </h3>
+        <div>
+          {loadingSign ? (
+            <div style={{ marginTop: "30vh", marginLeft: "50vh" }}>
+              <Spin
+                indicator={<LoadingOutlined style={{ fontSize: "3rem" }} />}
+              />
+            </div>
+          ) : (
+            <Row style={{ marginTop: "1rem", width: "132%" }}>
+              {recommendedArticles?.length
+                ? recommendedArticles.map((el, i) => {
+                    return (
+                      <div
+                        key={i}
+                        style={{ marginTop: "1rem", display: "flex" }}
+                      >
+                        <StoriesCard article={el} />
+                      </div>
+                    );
+                  })
+                : "No recommended Articles for this news"}
+            </Row>
+          )}
+        </div>
+      </div>
     </>
   );
 };

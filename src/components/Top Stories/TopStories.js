@@ -11,10 +11,12 @@ import StoriesCard from "./StoriesCard";
 import FollowCard from "./FollowCard";
 import { SearchOutlined } from "@ant-design/icons";
 import { Input } from "antd";
+import { Link, useNavigate } from "react-router-dom";
 const { CheckableTag } = Tag;
 
-const TopStories = ({ articles, msg, toggleMode }) => {
+const TopStories = ({ articles, msg, toggleMode, dropdown }) => {
   const carouselRef = useRef(null);
+  let navigate = useNavigate();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [news, setNews] = useState([]);
   const [search, setSearch] = useState("");
@@ -32,6 +34,7 @@ const TopStories = ({ articles, msg, toggleMode }) => {
     "Google",
     "Nano Technology",
   ];
+  const [value, setValue] = useState("");
   const [selectedTags, setSelectedTags] = useState(["All"]);
   const handleChange = (tag, checked) => {
     const nextSelectedTags = checked
@@ -45,6 +48,12 @@ const TopStories = ({ articles, msg, toggleMode }) => {
   const handleSearch = () => {
     console.log(filteredArticles);
   };
+
+  const handleChangeSelect = (e) => {
+    setValue(e.target.value);
+    navigate(`/dashboard/country/${e.target.value}`);
+    console.log(value);
+  };
   return (
     <>
       <div className="bold fs-20">{msg || "Top Stories for you"}</div>
@@ -52,7 +61,7 @@ const TopStories = ({ articles, msg, toggleMode }) => {
         <Col xs={18}>
           <div
             className="search_bar"
-            style={{ marginTop: "1.5rem", width: "82%" }}
+            style={{ marginTop: "1.5rem", width: "100%", display: "flex" }}
           >
             <Input
               className="border-0"
@@ -75,6 +84,53 @@ const TopStories = ({ articles, msg, toggleMode }) => {
                 </span>
               }
             />
+
+            {dropdown === "yes" ? (
+              <select
+                style={{
+                  height: "45px",
+                  overflowY: "auto",
+                  width: "250px",
+                  marginLeft: "3px",
+                  background: "#ECF5F8",
+                  border: "2px solid #E0F0F8",
+                  borderRadius: "3px",
+                  fontSize: "1.2rem",
+                  fontWeight: "bold",
+                }}
+                value={value}
+                onChange={(e) => handleChangeSelect(e)}
+              >
+                <option value="us">USA</option>
+
+                <option style={{ overflowY: "scroll" }} value="gb">
+                  United Kingdom
+                </option>
+                <option style={{ overflowY: "scroll" }} value="au">
+                  Australia
+                </option>
+                <option style={{ overflowY: "scroll" }} value="ca">
+                  Canada
+                </option>
+                <option style={{ overflowY: "scroll" }} value="ae">
+                  United Arab Emirated
+                </option>
+                <option style={{ overflowY: "scroll" }} value="ar">
+                  Argentina
+                </option>
+                <option style={{ overflowY: "scroll" }} value="at">
+                  Austria
+                </option>
+                <option style={{ overflowY: "scroll" }} value="bg">
+                  Bulgaria
+                </option>
+                <option style={{ overflowY: "scroll" }} value="be">
+                  Belgium
+                </option>
+              </select>
+            ) : (
+              ""
+            )}
           </div>
 
           <div style={{ marginTop: "2rem" }}></div>
