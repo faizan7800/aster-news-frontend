@@ -6,6 +6,7 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import {
   FacebookShareButton,
   InstapaperShareButton,
@@ -37,6 +38,7 @@ import {
   useAddNewsToBookmarkMutation,
   useNewsCountMutation,
   useRemoveNewsFromBookmarkMutation,
+  useSaveExpressNewsDescMutation,
 } from "../../services/nodeApi";
 import { format } from "timeago.js";
 import {
@@ -45,6 +47,7 @@ import {
   DislikeOutlined,
   LikeFilled,
   DislikeFilled,
+  ConsoleSqlOutlined,
 } from "@ant-design/icons";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
@@ -72,10 +75,12 @@ const Story = () => {
   const [addComment] = useAddCommentMutation();
   const [saveSamaNewsDesc] = useSaveSammaNewsDescMutation();
   const [saveGeoNewsDesc] = useSaveGeoNewsDescMutation();
+  const [saveExpressNewsDesc] = useSaveExpressNewsDescMutation();
   const [likeNews] = useLikeNewsMutation();
   const [dislike] = useDislikeNewsMutation();
   const [recommendedArticles, setRecommendedArticles] = useState([]);
   const [removeLikeDislike] = useRemoveLikeDislikeMutation();
+
   const { data: comments, isLoading: isCommentsLoading } =
     useGetAllCommentsQuery(id);
   const { data, isLoading } = useGetNewsByIdQuery(
@@ -98,6 +103,7 @@ const Story = () => {
   let news;
   if (data) news = data?.news[0];
   else if (localNews) news = localNews.news[0];
+
   useEffect(() => {
     const saveDesc = async () => {
       if (news?.description === "") {
@@ -112,36 +118,49 @@ const Story = () => {
             cat,
             id,
           });
+        else if (news?.author === "Express News") {
+          const res = await saveExpressNewsDesc({
+            cat,
+            id,
+          });
+          console.log(res);
+        }
       }
       setLoad(false);
     };
     saveDesc();
-    const fetchArticles = async () => {
-      try {
-        setLoadingSign(true);
-        const response = await axios.get(
-          `http://localhost:3001/api/v1/allnews`
-        );
-        const articles = response.data;
-        const titleWords = news?.title.split(" ");
-        let recArt;
-        titleWords.forEach((word) => {
-          recArt = articles.data.filter((article) =>
-            article.title.includes(word)
-          );
-        });
-        console.log(recArt);
-        setRecommendedArticles(recArt);
-        setLoadingSign(false);
-        // console.log(titleWords);
-        console.log(articles); // You can process or display the articles here
-      } catch (error) {
-        console.error("Error fetching articles:", error);
-      }
-    };
-    fetchArticles();
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [localNews]);
+
+  const fetchArticles = async () => {
+    try {
+      setLoadingSign(true);
+      const response = await axios.get(`http://localhost:3001/api/v1/allnews`);
+      const articles = response.data;
+
+      let words = news?.title.split(" ");
+      let titleWords = words.filter((word) => word.length > 4);
+      let recArt;
+      titleWords.forEach((word) => {
+        recArt = articles.data.filter((article) =>
+          article?.title?.includes(word)
+        );
+        // console.log(recArt);
+      });
+      // console.log(recArt);
+      // setRecommendedArticles(recArt);
+      setLoadingSign(false);
+      // console.log(titleWords);
+      console.log(articles); // You can process or display the articles here
+      // console.log(words);
+      setRecommendedArticles(recArt);
+      // You can process or display the articles here
+    } catch (error) {
+      console.error("Error fetching articles:", error);
+    }
+  };
+
   if (isLoading || isLocalLoading)
     return (
       <div style={{ marginTop: "30vh", marginLeft: "50vh" }}>
@@ -333,9 +352,22 @@ const Story = () => {
           width: "90%",
         }}
       >
-        <h3 style={{ fontWeight: "bolder", paddingTop: "15px" }}>
-          Recommended News According to Your Interest
-        </h3>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <h3 style={{ fontWeight: "bolder", paddingTop: "15px" }}>
+            Recommended News According to Your Interest
+          </h3>
+          <Button
+            style={{
+              border: "none",
+              background: "#4096FF",
+              marginLeft: "20px",
+              color: "white",
+            }}
+            onClick={fetchArticles}
+          >
+            See Recommended
+          </Button>
+        </div>
         <div>
           {loadingSign ? (
             <div style={{ marginTop: "30vh", marginLeft: "50vh" }}>

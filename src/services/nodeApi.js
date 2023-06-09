@@ -120,7 +120,7 @@ export const nodeApi = createApi({
           authorization: `Bearer ${Cookies.get("jwt")}`,
         },
       }),
-      // providesTags: ["Role"],
+      providesTags: ["News"],
     }),
     getNewsByCountry: builder.query({
       query: (country) => ({
@@ -130,7 +130,7 @@ export const nodeApi = createApi({
           authorization: `Bearer ${Cookies.get("jwt")}`,
         },
       }),
-      // providesTags: ["Role"],
+      providesTags: ["News"],
     }),
     getNewsById: builder.query({
       query: ({ id, cat }) => ({
@@ -192,7 +192,7 @@ export const nodeApi = createApi({
           authorization: `Bearer ${Cookies.get("jwt")}`,
         },
       }),
-      // providesTags: ["Role"],
+      invalidatesTags: ["News"],
     }),
     saveSammaNewsByCategory: builder.mutation({
       query: (category) => ({
@@ -202,7 +202,17 @@ export const nodeApi = createApi({
           authorization: `Bearer ${Cookies.get("jwt")}`,
         },
       }),
-      // providesTags: ["Role"],
+      invalidatesTags: ["News"],
+    }),
+    saveExpressNewsByCategory: builder.mutation({
+      query: (category) => ({
+        url: `http://localhost:3001/api/v1/news/local/express/${category}`,
+        method: "POST",
+        headers: {
+          authorization: `Bearer ${Cookies.get("jwt")}`,
+        },
+      }),
+      invalidatesTags: ["News"],
     }),
     saveGeoNewsDesc: builder.mutation({
       query: (body) => ({
@@ -218,6 +228,17 @@ export const nodeApi = createApi({
     saveSammaNewsDesc: builder.mutation({
       query: (body) => ({
         url: `http://localhost:3001/api/v1/news/local/samma/${body.cat}/${body.id}`,
+        method: "POST",
+        body,
+        headers: {
+          authorization: `Bearer ${Cookies.get("jwt")}`,
+        },
+      }),
+      invalidatesTags: ["singleNews"],
+    }),
+    saveExpressNewsDesc: builder.mutation({
+      query: (body) => ({
+        url: `http://localhost:3001/api/v1/news/local/express/${body.cat}/${body.id}`,
         method: "POST",
         body,
         headers: {
@@ -270,8 +291,10 @@ export const {
   useLikeNewsMutation,
   useDislikeNewsMutation,
   useSaveNewsByCategoryMutation,
+  useSaveExpressNewsByCategoryMutation,
   useGetNewsHtmlMutation,
   useSaveGeoNewsByCategoryMutation,
   useSaveSammaNewsByCategoryMutation,
   useNewsCountMutation,
+  useSaveExpressNewsDescMutation
 } = nodeApi;

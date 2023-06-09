@@ -127,6 +127,105 @@ const TopStories = ({ articles, msg, toggleMode, dropdown }) => {
                 <option style={{ overflowY: "scroll" }} value="be">
                   Belgium
                 </option>
+                <option style={{ overflowY: "scroll" }} value="ch">
+                  Switzerland
+                </option>
+                <option style={{ overflowY: "scroll" }} value="cn">
+                  China
+                </option>
+                <option style={{ overflowY: "scroll" }} value="fr">
+                  France
+                </option>
+                <option style={{ overflowY: "scroll" }} value="co">
+                  Colombia
+                </option>
+                <option style={{ overflowY: "scroll" }} value="cz">
+                  Czech Republic
+                </option>
+                <option style={{ overflowY: "scroll" }} value="de">
+                  Germany
+                </option>
+                <option style={{ overflowY: "scroll" }} value="eg">
+                  Egypt{" "}
+                </option>
+                <option style={{ overflowY: "scroll" }} value="gr">
+                  Greece
+                </option>
+                <option style={{ overflowY: "scroll" }} value="hk">
+                  Hong Kong
+                </option>
+                <option style={{ overflowY: "scroll" }} value="hu">
+                  Hungary
+                </option>
+                <option style={{ overflowY: "scroll" }} value="id">
+                  Indonesia
+                </option>
+                <option style={{ overflowY: "scroll" }} value="ie">
+                  Ireland
+                </option>
+                <option style={{ overflowY: "scroll" }} value="il">
+                  Israel
+                </option>
+                <option style={{ overflowY: "scroll" }} value="it">
+                  Italy
+                </option>
+                <option style={{ overflowY: "scroll" }} value="in">
+                  India
+                </option>
+                <option style={{ overflowY: "scroll" }} value="jp">
+                  Japan
+                </option>
+                <option style={{ overflowY: "scroll" }} value="kr">
+                  South Korea{" "}
+                </option>
+                <option style={{ overflowY: "scroll" }} value="ma">
+                  Morocco
+                </option>
+                <option style={{ overflowY: "scroll" }} value="mx">
+                  Mexico
+                </option>
+                <option style={{ overflowY: "scroll" }} value="my">
+                  Malaysia
+                </option>
+                <option style={{ overflowY: "scroll" }} value="no">
+                  Norway
+                </option>
+                <option style={{ overflowY: "scroll" }} value="nz">
+                  New Zeland
+                </option>
+                <option style={{ overflowY: "scroll" }} value="pt">
+                  Portugal
+                </option>
+                <option style={{ overflowY: "scroll" }} value="ro">
+                  Romania
+                </option>
+                <option style={{ overflowY: "scroll" }} value="ru">
+                  Russia{" "}
+                </option>
+                <option style={{ overflowY: "scroll" }} value="sa">
+                  Saudi Arabia
+                </option>
+                <option style={{ overflowY: "scroll" }} value="se">
+                  Sweden
+                </option>
+                <option style={{ overflowY: "scroll" }} value="sg">
+                  Singapore
+                </option>
+                <option style={{ overflowY: "scroll" }} value="sk">
+                  Slovakia
+                </option>
+                <option style={{ overflowY: "scroll" }} value="tr">
+                  Turkey
+                </option>
+                <option style={{ overflowY: "scroll" }} value="tw">
+                  Taiwan
+                </option>
+                <option style={{ overflowY: "scroll" }} value="ua">
+                  Ukraine
+                </option>
+                <option style={{ overflowY: "scroll" }} value="za">
+                  South Africa
+                </option>
               </select>
             ) : (
               ""

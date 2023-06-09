@@ -14,6 +14,7 @@ import {
 } from "@ant-design/icons";
 import {
   useLoginMutation,
+  useSaveExpressNewsByCategoryMutation,
   useSaveGeoNewsByCategoryMutation,
   useSaveNewsByCategoryMutation,
   useSaveSammaNewsByCategoryMutation,
@@ -28,6 +29,7 @@ export default function Login() {
   const [saveIntNewsByCat] = useSaveNewsByCategoryMutation();
   const [saveGeoNewsByCategory] = useSaveGeoNewsByCategoryMutation();
   const [saveSammaNewsByCategory] = useSaveSammaNewsByCategoryMutation();
+  const [saveExpressNewsByCategory] = useSaveExpressNewsByCategoryMutation();
   const categories = [
     "entertainment",
     "sports",
@@ -41,6 +43,7 @@ export default function Login() {
       await saveIntNewsByCat(cat);
       await saveGeoNewsByCategory(cat);
       await saveSammaNewsByCategory(cat);
+      await saveExpressNewsByCategory(cat);
     }
   };
 

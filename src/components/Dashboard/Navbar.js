@@ -25,10 +25,17 @@ const Navbar = ({ toggleMode }) => {
     Cookies.set("jwt", "");
     navigate("/login");
   };
+  const userProfile = () => {
+    navigate("/dashboard/about");
+  };
   window.addEventListener("scroll", changeNavbarColor);
   const items = [
     {
       key: "1",
+      label: <span onClick={userProfile}>User Profile</span>,
+    },
+    {
+      key: "2",
       label: <span onClick={userSignOut}>Logout</span>,
     },
   ];
@@ -52,11 +59,7 @@ const Navbar = ({ toggleMode }) => {
         >
           <Col xs={4}>
             <div>
-              <img
-                style={{ width: "40px", height: "50px" }}
-                src="/assets/logo.svg"
-                alt=""
-              />
+              <img src="/assets/logo.png" alt="" />
               <span
                 className="bold fs-18"
                 style={{
@@ -65,7 +68,6 @@ const Navbar = ({ toggleMode }) => {
                 }}
               >
                 {" "}
-                NEWS WEBSITE
               </span>
             </div>
           </Col>

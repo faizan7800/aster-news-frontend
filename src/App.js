@@ -23,6 +23,7 @@ import LocalEntertainment from "./components/LocalNews/Entertainment";
 import LocalTechnology from "./components/LocalNews/Technology";
 import Country from "./components/Countries/Country";
 import BookmarkedNews from "./components/BookmarkedNews/BookmarkedNews";
+import UserProfile from "./components/UserProfile/UserProfile";
 function App() {
   const [toggleMode, setToggleMode] = useState(false);
   function handleToggleMode() {
@@ -85,6 +86,72 @@ function App() {
             <Route exact path="country/at" element={<Country />} />
             <Route exact path="country/be" element={<Country />} />
             <Route exact path="country/bg" element={<Country />} />
+            <Route exact path="country/ro" element={<Country />} />
+            <Route exact path="country/pt" element={<Country />} />
+            <Route exact path="country/nz" element={<Country />} />
+            <Route exact path="country/no" element={<Country />} />
+            <Route exact path="country/my" element={<Country />} />
+            <Route exact path="country/mx" element={<Country />} />
+            <Route exact path="country/ma" element={<Country />} />
+            <Route exact path="country/kr" element={<Country />} />
+            <Route exact path="country/jp" element={<Country />} />
+            <Route exact path="country/in" element={<Country />} />
+            <Route exact path="country/it" element={<Country />} />
+            <Route exact path="country/il" element={<Country />} />
+            <Route exact path="country/ie" element={<Country />} />
+            <Route exact path="country/id" element={<Country />} />
+            <Route exact path="country/hu" element={<Country />} />
+            <Route exact path="country/hk" element={<Country />} />
+            <Route exact path="country/gr" element={<Country />} />
+            <Route exact path="country/eg" element={<Country />} />
+            <Route exact path="country/de" element={<Country />} />
+            <Route exact path="country/cz" element={<Country />} />
+            <Route exact path="country/co" element={<Country />} />
+            <Route exact path="country/fr" element={<Country />} />
+            <Route exact path="country/cn" element={<Country />} />
+            <Route exact path="country/ch" element={<Country />} />
+            <Route exact path="country/za" element={<Country />} />
+            <Route exact path="country/ua" element={<Country />} />
+            <Route exact path="country/tw" element={<Country />} />
+            <Route exact path="country/tr" element={<Country />} />
+            <Route exact path="country/sk" element={<Country />} />
+            <Route exact path="country/sg" element={<Country />} />
+            <Route exact path="country/se" element={<Country />} />
+            <Route exact path="country/sa" element={<Country />} />
+            <Route exact path="country/ru" element={<Country />} />
+
+            <Route exact path="country/ro/:id" element={<Story />} />
+            <Route exact path="country/pt/:id" element={<Story />} />
+            <Route exact path="country/nz/:id" element={<Story />} />
+            <Route exact path="country/no/:id" element={<Story />} />
+            <Route exact path="country/my/:id" element={<Story />} />
+            <Route exact path="country/mx/:id" element={<Story />} />
+            <Route exact path="country/ma/:id" element={<Story />} />
+            <Route exact path="country/kr/:id" element={<Story />} />
+            <Route exact path="country/jp/:id" element={<Story />} />
+            <Route exact path="country/in/:id" element={<Story />} />
+            <Route exact path="country/it/:id" element={<Story />} />
+            <Route exact path="country/il/:id" element={<Story />} />
+            <Route exact path="country/ie/:id" element={<Story />} />
+            <Route exact path="country/id/:id" element={<Story />} />
+            <Route exact path="country/hu/:id" element={<Story />} />
+            <Route exact path="country/hk/:id" element={<Story />} />
+            <Route exact path="country/gr/:id" element={<Story />} />
+            <Route exact path="country/eg/:id" element={<Story />} />
+            <Route exact path="country/de/:id" element={<Story />} />
+            <Route exact path="country/cz/:id" element={<Story />} />
+            <Route exact path="country/co/:id" element={<Story />} />
+            <Route exact path="country/fr/:id" element={<Story />} />
+            <Route exact path="country/cn/:id" element={<Story />} />
+            <Route exact path="country/ch/:id" element={<Story />} />
+            <Route exact path="country/za/:id" element={<Story />} />
+            <Route exact path="country/ua/:id" element={<Story />} />
+            <Route exact path="country/tr/:id" element={<Story />} />
+            <Route exact path="country/sk/:id" element={<Story />} />
+            <Route exact path="country/sg/:id" element={<Story />} />
+            <Route exact path="country/se/:id" element={<Story />} />
+            <Route exact path="country/sa/:id" element={<Story />} />
+            <Route exact path="country/ru/:id" element={<Story />} />
             <Route exact path="country/us/:id" element={<Story />} />
             <Route exact path="country/gb/:id" element={<Story />} />
             <Route exact path="country/au/:id" element={<Story />} />
@@ -174,6 +241,7 @@ function App() {
               element={<LocalTechnology toggleMode={toggleMode} />}
             />
             <Route exact path="local/technology/:id" element={<Story />} />
+            <Route exact path="about" element={<UserProfile />} />
           </Route>
         </Routes>
       </BrowserRouter>

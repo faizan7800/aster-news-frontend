@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation, useParams } from "react-router-dom";
 import { Card, Row, Col } from "antd";
 import "./TopStories.css";
@@ -9,6 +9,7 @@ import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import ShareIcon from "@mui/icons-material/Share";
+import axios from "axios";
 import "./Card.css";
 import {
   useNewsCountMutation,
@@ -20,11 +21,44 @@ const StoriesCard = ({ size, articleLarge, article, toggleMode }) => {
   const location = useLocation();
   const [countNews] = useNewsCountMutation();
 
+  const [clickCount, setClickCount] = useState(0);
+
+  const getClickCount = async () => {
+    try {
+      // Make a GET request to retrieve the click count
+      const response = await axios.get(
+        `http://localhost:3001/api/v1/news/articles/${article._id}/clicks`
+      );
+      setClickCount(response.data.clickCount);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  useEffect(() => {
+    // Fetch the click count when the component mounts
+    getClickCount();
+  }, []);
+
   const handleClick = async () => {
-    await countNews({
-      id: article._id,
-    });
-    navigate(location.pathname + "/" + article._id);
+    try {
+      // Make a POST request to update the click count
+      await axios.post(
+        `http://localhost:3001/api/v1/news/articles/${article._id}/clicks`
+      );
+      // Update the local click count state
+      setClickCount(clickCount + 1);
+    } catch (error) {
+      console.error(error);
+    }
+    navigate(
+      article.category
+        ? `/dashboard/${article.category.includes("local") ? "local" : "int"}/${
+            article.category.includes("local")
+              ? article.category.substring(5)
+              : article.category
+          }/${article._id}`
+        : `/dashboard/country/${article.country}/${article._id}`
+    );
   };
   return (
     <>
@@ -81,9 +115,7 @@ const StoriesCard = ({ size, articleLarge, article, toggleMode }) => {
             <a className="readLater" target="_blank">
               Read
             </a>
-            <span>
-              {article?.newsCount.length ? article.newsCount.length : "0"}
-            </span>
+            <span>{article.clickCount}</span>
           </div>
           <div className="tit-des-img">
             <h4>{article?.title?.substr(0, 50) + "..."}</h4>
